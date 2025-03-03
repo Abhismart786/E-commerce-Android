@@ -1,7 +1,5 @@
 package com.example.e_commerce_app;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -22,14 +22,16 @@ public class SignUpActivity extends AppCompatActivity {
     private Button signUpButton;
     private TextView loginRedirect;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firebase Auth
+        // Initialize Firebase Auth and Database
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Initialize views
         nameInput = findViewById(R.id.nameInput);
@@ -61,13 +63,16 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (user != null) {
                                     // Set up the profile update request
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(name)
+                                            .setDisplayName(name)  // Saving name to the profile
                                             .build();
 
                                     // Update the user's profile with the new name
                                     user.updateProfile(profileUpdates)
                                             .addOnCompleteListener(profileTask -> {
                                                 if (profileTask.isSuccessful()) {
+                                                    // Save user data to Realtime Database
+                                                    saveUserData(user, name, email);
+
                                                     // Profile update successful, proceed to login page
                                                     Toast.makeText(SignUpActivity.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
@@ -90,12 +95,45 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         // Redirect to Login page if user already has an account
-       loginRedirect.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-               finish();
-           }
-       });
-           }
+        loginRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
+    }
+
+    private void saveUserData(FirebaseUser user, String name, String email) {
+        // Create a new User object to store data
+        String userId = user.getUid();
+
+        // User object now includes name and email
+        User newUser = new User(name, email);
+
+        // Save user data to Realtime Database under 'users' node
+        mDatabase.child("users").child(userId).setValue(newUser)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignUpActivity.this, "User data saved to database", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    // User model class
+    public static class User {
+        public String name;
+        public String email;
+
+        public User() {
+            // Default constructor required for Firebase
+        }
+
+        public User(String name, String email) {
+            this.name = name;
+            this.email = email;
+        }
+    }
 }
