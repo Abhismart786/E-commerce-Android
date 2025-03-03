@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddProducts">
+
+    <!-- Product Image Selection (ImageView at the top) -->
+    <ImageView
+        android:id="@+id/productImageContainer"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/border"
+
+    android:scaleType="centerCrop"
+    android:contentDescription="Product Image"
+    android:clickable="true"
+    android:focusable="true"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+    <!-- Product Name Input -->
+    <EditText
+        android:id="@+id/productNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Product Name"
+        android:textColorHint="#888"
+        android:textColor="#000"
+        android:padding="16dp"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/productImageContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Product Description Input -->
+    <EditText
+        android:id="@+id/productDescriptionInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Product Description"
+        android:textColorHint="#888"
+        android:textColor="#000"
+        android:padding="16dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@id/productNameInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Product Price Input -->
+    <EditText
+        android:id="@+id/productPriceInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Product Price"
+        android:textColorHint="#888"
+        android:textColor="#000"
+        android:padding="16dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/productDescriptionInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Product Category Input -->
+    <EditText
+        android:id="@+id/productCategoryInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Product Category"
+        android:textColorHint="#888"
+        android:textColor="#000"
+        android:padding="16dp"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/productPriceInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Add Product Button -->
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Product"
+        app:layout_constraintTop_toBottomOf="@id/productCategoryInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- View Products Button -->
+    <Button
+        android:id="@+id/viewProductsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View Products"
+        app:layout_constraintTop_toBottomOf="@id/addProductButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
