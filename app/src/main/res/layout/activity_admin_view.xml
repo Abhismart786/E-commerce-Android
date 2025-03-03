@@ -7,16 +7,9 @@
     android:gravity="center"
     android:background="@color/white">
 
+
     <!-- Card View for form container -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center"
-        android:radius="12dp"
-        android:padding="24dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,6 +17,18 @@
             android:orientation="vertical"
             android:gravity="center"
             android:spacing="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Admin Pannel"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:radius="12dp"
+                />
 
             <!-- Email input -->
             <EditText
@@ -61,43 +66,25 @@
                 android:textColor="@android:color/white"
                 android:padding="12dp"
                 android:radius="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="SignUp as a user?Click here"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp"
+                android:radius="12dp"
+                />
 
             <!-- Redirect to Sign Up -->
 
-            <TextView
-                android:id="@+id/forgetPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginBottom="16dp"
-                android:clickable="true"
-                android:gravity="center"
-                android:text="forget password?"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/signupRedirect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't have an account? Sign up"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp"
-                android:clickable="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center" />
-            <TextView
-                android:id="@+id/adminRedirect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login as Admin"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="14sp"
-                android:clickable="true"
-                android:layout_marginTop="8dp"
-                android:gravity="center" />
+
+
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

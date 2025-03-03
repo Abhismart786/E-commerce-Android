@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
     private Button loginButton;
-    private TextView signupRedirect;
+    private TextView signupRedirect, forgetPassword, adminRedirect;
     private FirebaseAuth mAuth;
 
     @Override
