@@ -67,16 +67,18 @@
                 android:padding="12dp"
                 android:radius="12dp"/>
             <TextView
+                android:id="@+id/signupRedirect"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="SignUp as a user?Click here"
+                android:text="SignUp as a user? Click here"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:padding="12dp"
                 android:radius="12dp"
-                />
+                android:clickable="true"
+                android:focusable="true"/>
 
             <!-- Redirect to Sign Up -->
 

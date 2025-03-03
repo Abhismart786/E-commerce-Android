@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
         signupRedirect = findViewById(R.id.signupRedirect);
+        adminRedirect = findViewById(R.id.adminRedirect); // Initialize adminRedirect
+        forgetPassword = findViewById(R.id.forgetPassword); // Initialize forgetPassword
 
         // Login logic
         loginButton.setOnClickListener(v -> {
@@ -68,5 +70,11 @@ public class LoginActivity extends AppCompatActivity {
 
         // Redirect to Sign Up page if the user doesn't have an account
         signupRedirect.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
+
+        // Redirect to Admin page if admin login
+        adminRedirect.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, AdminView.class)));
+
+        // Redirect to Forget Password page
+        forgetPassword.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ForgetPassword.class)));
     }
 }
