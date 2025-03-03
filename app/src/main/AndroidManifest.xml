@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Ecommerce_app"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".AdminView"
             android:exported="false" />
         <activity
             android:name=".ForgetPassword"
@@ -25,13 +25,13 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminView"
+            android:name=".AddProducts"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AddProducts"
+            android:name=".SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
