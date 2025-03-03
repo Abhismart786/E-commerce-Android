@@ -7,6 +7,21 @@
     android:gravity="center"
     android:background="@color/white">
 
+    <!-- Professional Welcome TextView -->
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to ShopEase!"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:padding="8dp"
+        android:layout_gravity="center" />
+
     <!-- Card View for form container -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,6 +39,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:spacing="8dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,9 +51,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:padding="8dp"
-
-                />
+                android:padding="8dp" />
 
             <!-- Email input -->
             <EditText
@@ -100,6 +114,7 @@
                 android:clickable="true"
                 android:layout_marginTop="8dp"
                 android:gravity="center" />
+
             <TextView
                 android:id="@+id/adminRedirect"
                 android:layout_width="wrap_content"
@@ -110,7 +125,6 @@
                 android:clickable="true"
                 android:layout_marginTop="8dp"
                 android:gravity="center" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
