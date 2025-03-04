@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategoryActivity">
+
+    <TextView
+        android:id="@+id/slogan_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:textAlignment="center"
+        android:text="Add New Products"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/linear1_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slogan_category"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <!-- T-shirt Image -->
+        <ImageView
+            android:id="@+id/tshirt_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/tshirt"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Female Icon Image -->
+        <ImageView
+            android:id="@+id/female_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/female"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Jersey Image -->
+        <ImageView
+            android:id="@+id/jersey_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/jersey"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Shirt Image -->
+        <ImageView
+            android:id="@+id/shirt_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/shirt"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear1_category_layout"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <!-- Glasses Image -->
+        <ImageView
+            android:id="@+id/glasses_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/glasses"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Purses and Bags Image -->
+        <ImageView
+            android:id="@+id/purses_and_bags_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/purses_bags"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Hat Image -->
+        <ImageView
+            android:id="@+id/hat_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/hat"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Shoe Image -->
+        <ImageView
+            android:id="@+id/shoe_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/shoe"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear3_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear2_category_layout"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <!-- Monitor Image -->
+        <ImageView
+            android:id="@+id/monitor_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/monitor"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Smartphone Image -->
+        <ImageView
+            android:id="@+id/smartphone_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/smartphone"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Watch Image -->
+        <ImageView
+            android:id="@+id/watch_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/watch"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Headphones Image -->
+        <ImageView
+            android:id="@+id/headphones_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/headphones"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.e_commerce_app;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,6 @@ public class AddProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_products);
-
+        Toast.makeText(this, "Welcome Admin....", Toast.LENGTH_SHORT).show();
     }
 }
