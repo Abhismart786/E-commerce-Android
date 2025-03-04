@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Ecommerce_app"
         tools:targetApi="31">
         <activity
-            android:name=".AdminCategoryActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".AdminView"
@@ -34,7 +34,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminCategoryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

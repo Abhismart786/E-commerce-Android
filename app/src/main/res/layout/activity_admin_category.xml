@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="100dp"
         android:textAlignment="center"
         android:text="Add New Products"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:textColor="@android:color/black"
         android:textStyle="bold"/>
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/slogan_category"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_centerHorizontal="true">
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear1_category_layout"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_centerHorizontal="true">
@@ -123,10 +123,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear2_category_layout"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
 
         <!-- Monitor Image -->
         <ImageView

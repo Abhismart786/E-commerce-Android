@@ -117,7 +117,7 @@ public class AdminView extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(AdminView.this, "Admin Details Saved Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AdminView.this, AddProducts.class)); // Redirect to Add Product page
+                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class)); // Redirect to Add Product page
                         finish();
                     } else {
                         Toast.makeText(AdminView.this, "Failed to save admin details: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
