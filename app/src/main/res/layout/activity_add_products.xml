@@ -69,19 +69,7 @@
         android:layout_marginTop="8dp"/>
 
     <!-- Product Category Input -->
-    <EditText
-        android:id="@+id/productCategoryInput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Product Category"
-        android:textColorHint="#888"
-        android:textColor="#000"
-        android:padding="16dp"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/productPriceInput"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"/>
+
 
     <!-- Add Product Button -->
     <Button
@@ -89,20 +77,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Add Product"
-        app:layout_constraintTop_toBottomOf="@id/productCategoryInput"
+        app:layout_constraintTop_toBottomOf="@id/productPriceInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="16dp"/>
 
     <!-- View Products Button -->
-    <Button
-        android:id="@+id/viewProductsButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="View Products"
-        app:layout_constraintTop_toBottomOf="@id/addProductButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
