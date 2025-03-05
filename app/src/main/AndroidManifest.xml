@@ -20,7 +20,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".AdminView"
@@ -38,7 +38,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
