@@ -26,7 +26,7 @@ public class Profile extends AppCompatActivity {
 
     private CircleImageView profileImageView;
     private TextView tvUserName, tvUserEmail, tvUserPhone;
-    private Button btnChangeImage;
+    private Button btnChangeImage, btnLogout; // Declare the logout button
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -45,6 +45,7 @@ public class Profile extends AppCompatActivity {
         tvUserEmail = findViewById(R.id.tvUserEmail);
         tvUserPhone = findViewById(R.id.tvUserPhone);
         btnChangeImage = findViewById(R.id.btnChangeImage);
+        btnLogout = findViewById(R.id.btnLogout); // Initialize the logout button
 
         mAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -73,6 +74,14 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        // Handle logout button click
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
             }
         });
     }
@@ -110,15 +119,19 @@ public class Profile extends AppCompatActivity {
                     // Get the download URL and update user's profile picture
                     fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
                         Picasso.get().load(uri).into(profileImageView);
-                        // Optionally update the user's profile picture URL in Firebase Authentication
-                        // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        // UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        //         .setPhotoUri(uri)
-                        //         .build();
-                        // user.updateProfile(profileUpdates);
                     });
                 }
             });
         }
+    }
+
+    // Handle logout logic
+    private void logout() {
+        mAuth.signOut(); // Sign the user out
+
+        // Redirect to LoginActivity (or any activity of your choice)
+        Intent intent = new Intent(Profile.this, LoginActivity.class);
+        startActivity(intent);
+        finish(); // Finish the Profile activity to prevent the user from navigating back
     }
 }
