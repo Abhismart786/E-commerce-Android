@@ -116,7 +116,7 @@ public class AdminView extends AppCompatActivity {
         mAdminsRef.child(adminId).setValue(adminDetails)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(AdminView.this, "Admin Details Saved Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminView.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AdminView.this, AdminCategoryActivity.class)); // Redirect to Add Product page
                         finish();
                     } else {
