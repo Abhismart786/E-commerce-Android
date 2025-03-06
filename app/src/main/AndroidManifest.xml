@@ -14,8 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerce_app"
-
         tools:targetApi="31">
+        <activity
+            android:name=".Cart"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity
+            android:name=".Favourite"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
@@ -25,7 +32,7 @@
         <activity
             android:name=".Profile"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".AdminView"
             android:exported="false" />
@@ -43,11 +50,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-           >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

@@ -53,17 +53,24 @@ public class MainActivity extends BaseActivity {
 
         // Set up the navigation listener
         bottomNav.setOnNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_profile) {
+            if (item.getItemId() == R.id.nav_home) {
+                return true;
+            }
+            else if (item.getItemId() == R.id.nav_profile) {
                 // Navigate to ProfileActivity when profile is selected
                 Intent profileIntent = new Intent(MainActivity.this, Profile.class);
                 startActivity(profileIntent);
                 return true;
             } else if (item.getItemId() == R.id.nav_purse) {
-                // You are already in the home activity, so this can be left empty
+                Intent profileIntent = new Intent(MainActivity.this, Favourite.class);
+                startActivity(profileIntent);
                 return true;
+                // You are already in the home activity, so this can be left empty
+
             } else if (item.getItemId() == R.id.nav_cart) {
                 // Navigate to SearchActivity when search is selected
-
+                Intent profileIntent = new Intent(MainActivity.this, Cart.class);
+                startActivity(profileIntent);
                 return true;
             }
 
