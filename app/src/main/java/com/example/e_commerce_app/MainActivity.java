@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity {
 
         // Initialize Firebase
         database = FirebaseDatabase.getInstance();
-        productRef = database.getReference("products"); // Assuming "products" is the node in the Realtime Database
+        productRef = database.getReference("Products"); // Assuming "products" is the node in the Realtime Database
 
         // Initialize product list and adapter
         productList = new ArrayList<>();

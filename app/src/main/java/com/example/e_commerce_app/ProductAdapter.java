@@ -34,7 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.productName.setText(product.getPname());
         holder.productCategory.setText(product.getCategory());
-        holder.productPrice.setText("$" + product.getPrice());
+        holder.productPrice.setText("Starts from $" + product.getPrice());
 
         // Load the product image using Picasso
         Picasso.get().load(product.getImage()).into(holder.productImage);
