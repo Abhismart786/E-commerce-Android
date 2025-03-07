@@ -185,7 +185,7 @@ public class AddProducts extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(AddProducts.this, AdminView.class));
+                            startActivity(new Intent(AddProducts.this, AdminCategoryActivity.class));
                         } else {
                             String message = task.getException().toString();
                             Toast.makeText(AddProducts.this, "Error: " + message, Toast.LENGTH_SHORT).show();
