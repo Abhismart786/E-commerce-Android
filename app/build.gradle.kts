@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation(libs.firebase.auth)  // Firebase Authentication SDK
       // Firebase Core SDK
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

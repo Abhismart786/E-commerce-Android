@@ -17,7 +17,9 @@ navigationFragment = "2.6.0"
 navigationUi = "2.6.0"
 circleImageView = "3.1.0"
 picasso = "2.71828"
+
 [libraries]
+
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
