@@ -3,18 +3,6 @@ package com.example.e_commerce_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.e_commerce_app.R;
-import com.example.e_commerce_app.SignUpActivity;
-
-
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,8 +24,8 @@ public class AdminView extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mAdminsRef;
 
-    private static final String ADMIN_EMAIL = "admin@example.com"; // Admin email
-    private static final String ADMIN_PASSWORD = "admin123"; // Fixed password for admin
+    private static final String ADMIN_EMAIL = "abhi@gmail.com"; // Admin email
+    private static final String ADMIN_PASSWORD = "abhi6239$"; // Fixed password for admin
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +60,13 @@ public class AdminView extends AppCompatActivity {
                     // If the email and password match the fixed admin credentials
                     FirebaseUser user = mAuth.getCurrentUser();
                     if (user != null) {
-                        saveAdminDetails(user);  // Save admin details to the separate "admins" node
+                        // Directly save admin details to the database without Firebase Auth sign-in
+                        saveAdminDetails(user);
+                    } else {
+                        // If no user is logged in, we don't have to do Firebase Auth here
+                        Toast.makeText(AdminView.this, "Admin login successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class));
+                        finish();
                     }
                 } else {
                     // Use Firebase Authentication to validate user credentials (if not using a fixed password)
@@ -117,7 +111,7 @@ public class AdminView extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(AdminView.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class)); // Redirect to Add Product page
+                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class)); // Redirect to Admin Category Activity
                         finish();
                     } else {
                         Toast.makeText(AdminView.this, "Failed to save admin details: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -171,4 +165,3 @@ public class AdminView extends AppCompatActivity {
         }
     }
 }
-
