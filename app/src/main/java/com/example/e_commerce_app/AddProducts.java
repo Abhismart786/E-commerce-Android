@@ -82,7 +82,7 @@ public class AddProducts extends AppCompatActivity {
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, GalleryPick);
     }
-
+// Handle the result of the gallery selection
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -111,6 +111,7 @@ public class AddProducts extends AppCompatActivity {
             StoreProductInformation();
         }
     }
+    // function used to store product info to database
 
     private void StoreProductInformation() {
 
@@ -169,7 +170,7 @@ public class AddProducts extends AppCompatActivity {
             }
         });
     }
-
+// function used to save info to database
     private void SaveProductInfoToDatabase() {
         HashMap<String, Object> productInfoMap = new HashMap<>();
         productInfoMap.put("pid", productRandomKey);

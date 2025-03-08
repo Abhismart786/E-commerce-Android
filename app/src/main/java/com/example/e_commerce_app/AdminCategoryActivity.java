@@ -39,7 +39,7 @@ public class AdminCategoryActivity extends AppCompatActivity
         watches = (ImageView) findViewById(R.id.watch_image);
         mobilePhones = (ImageView) findViewById(R.id.smartphone_image);
 
-
+// Categories
         tShirts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -50,7 +50,7 @@ public class AdminCategoryActivity extends AppCompatActivity
             }
         });
 
-
+        // Categories
         sportsTShirts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

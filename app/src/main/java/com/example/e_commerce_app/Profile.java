@@ -215,6 +215,7 @@ public class Profile extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> logout());
     }
 
+    // Load the user's profile image from Firebase Realtime Database
     private void loadUserProfile() {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
 
@@ -242,6 +243,7 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    // Open the file chooser to select an image
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -249,6 +251,7 @@ public class Profile extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
     }
 
+    // Handle the result of the image selection
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -259,6 +262,7 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    // Upload the selected image to Firebase Storage
     private void uploadImageToFirebase(Uri imageUri) {
         if (currentUser != null) {
             // Create a reference to store the image in Firebase Storage
@@ -277,6 +281,7 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+// Save the profile image URL in Firebase Realtime Database
     private void saveProfileImageUrl(String imageUrl) {
         // Get a reference to the Realtime Database "users" node
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");

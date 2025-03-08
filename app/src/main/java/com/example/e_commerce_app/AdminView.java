@@ -27,6 +27,7 @@ public class AdminView extends AppCompatActivity {
     private static final String ADMIN_EMAIL = "abhi@gmail.com"; // Admin email
     private static final String ADMIN_PASSWORD = "abhi6239$"; // Fixed password for admin
 
+    // Firebase Authentication and Database references
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class AdminView extends AppCompatActivity {
                     } else {
                         // If no user is logged in, we don't have to do Firebase Auth here
                         Toast.makeText(AdminView.this, "Admin login successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class));
+                        startActivity(new Intent(AdminView.this, Activity.class));
                         finish();
                     }
                 } else {
@@ -97,6 +98,7 @@ public class AdminView extends AppCompatActivity {
         });
     }
 
+    // Method to save admin details to the database
     private void saveAdminDetails(FirebaseUser user) {
         String adminId = user.getUid();  // Get the admin's UID
         String email = user.getEmail();
@@ -111,7 +113,7 @@ public class AdminView extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(AdminView.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AdminView.this, AdminCategoryActivity.class)); // Redirect to Admin Category Activity
+                        startActivity(new Intent(AdminView.this, Activity.class)); // Redirect to Admin Category Activity
                         finish();
                     } else {
                         Toast.makeText(AdminView.this, "Failed to save admin details: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -119,6 +121,7 @@ public class AdminView extends AppCompatActivity {
                 });
     }
 
+    // Method to save user details to the database
     private void saveUserDetails(FirebaseUser user) {
         String userId = user.getUid();
         String email = user.getEmail();
@@ -132,7 +135,7 @@ public class AdminView extends AppCompatActivity {
         mDatabase.getReference("users").child(userId).setValue(userDetails)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(AdminView.this, "Wrong admin details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminView.this, "User details saved", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(AdminView.this, "Failed to save user details: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -144,6 +147,11 @@ public class AdminView extends AppCompatActivity {
         public String name;
         public String email;
         public String role;
+
+        // No-argument constructor required for Firebase
+        public Admin() {
+            // Firebase needs this no-argument constructor
+        }
 
         public Admin(String name, String email, String role) {
             this.name = name;
@@ -157,6 +165,12 @@ public class AdminView extends AppCompatActivity {
         public String name;
         public String email;
         public String role;
+        public String id;
+
+        // No-argument constructor required for Firebase
+        public User() {
+            // Firebase needs this no-argument constructor
+        }
 
         public User(String name, String email, String role) {
             this.name = name;

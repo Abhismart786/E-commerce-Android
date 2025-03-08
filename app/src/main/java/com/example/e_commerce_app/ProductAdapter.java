@@ -19,17 +19,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private List<Product> productList;
     private Context context;
 
+    // Constructor
     public ProductAdapter(Context context, List<Product> productList) {
         this.context = context;
         this.productList = productList;
     }
 
+// Override methods
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_items, parent, false);
         return new ProductViewHolder(view);
     }
 
+    // Override methods
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = productList.get(position);
@@ -47,6 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productList.size();
     }
 
+    // ViewHolder class
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView productName;
         ImageView productImage;

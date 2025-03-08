@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+// Fetch products from Firebase
     private void fetchProductsFromFirebase() {
         productRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+// Filter products based on the search query
     private void filterProducts(String query) {
         filteredProductList.clear(); // Clear the filtered list
 

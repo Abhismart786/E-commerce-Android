@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.picasso)
     implementation(libs.circleImageView)
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
