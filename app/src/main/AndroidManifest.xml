@@ -52,10 +52,10 @@
             android:name=".AddProducts"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminView"
             android:exported="false" />
         <activity
-            android:name=".AdminView"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
