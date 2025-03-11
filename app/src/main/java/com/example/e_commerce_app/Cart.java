@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,16 +25,25 @@ public class Cart extends AppCompatActivity {
     private RecyclerView cartRecyclerView;
     private CartAdapter cartAdapter;
     private List<CartItem> cartItemList;
+    private TextView totalPriceTextView;  // To show the total price
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart); // Ensure you have a layout for the cart
+        setContentView(R.layout.activity_cart);
 
-        // Initialize RecyclerView
+        // Set up the ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Show the back button
+            getSupportActionBar().setTitle("Your Cart");  // Optional: Set the title for the action bar
+        }
+
+        // Initialize RecyclerView and total price TextView
         cartRecyclerView = findViewById(R.id.cartRecyclerView);
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        totalPriceTextView = findViewById(R.id.totalPriceTextView);  // Add this to your layout
 
         // Initialize cart item list and adapter
         cartItemList = new ArrayList<>();
@@ -47,32 +58,29 @@ public class Cart extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Cart", Context.MODE_PRIVATE);
         String cartItemsString = sharedPreferences.getString("cart_items", "[]");
 
-        Log.d("Cart", "Cart Items String fetched: " + cartItemsString);  // Log the fetched cart items
+        Log.d("Cart", "Cart Items String fetched: " + cartItemsString);
 
         if (!cartItemsString.isEmpty() && !cartItemsString.equals("[]")) {
             try {
-                // Parsing the cart items into a JSONArray
                 JSONArray cartItemsArray = new JSONArray(cartItemsString);
-
-                // Clear any existing items to avoid duplication
                 cartItemList.clear();
-
-                // Process each item in the cart
                 for (int i = 0; i < cartItemsArray.length(); i++) {
                     JSONObject productObject = cartItemsArray.getJSONObject(i);
                     String productId = productObject.getString("productId");
                     String productName = productObject.getString("productName");
                     String productImageUrl = productObject.getString("productImageUrl");
+                    double productPrice = productObject.optDouble("productPrice", 0.0);
+                    int quantity = productObject.optInt("quantity", 1);  // Get the quantity, default is 1
 
-                    // Create CartItem and add it to the list
-                    CartItem cartItem = new CartItem(productId, productName, productImageUrl);
+                    // Log the product and its price
+                    Log.d("Cart", "Loaded product: " + productName + " | Price: " + productPrice + " | Quantity: " + quantity);
+
+                    CartItem cartItem = new CartItem(productId, productName, productImageUrl, productPrice, quantity);
                     cartItemList.add(cartItem);
                 }
 
-                // Notify the adapter that the data has changed
                 cartAdapter.notifyDataSetChanged();
-
-                // Log the loaded cart items to verify
+                updateTotalPrice();  // Update the total price after loading the items
                 Log.d("Cart", "Loaded Cart Items: " + cartItemList.size());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -83,6 +91,37 @@ public class Cart extends AppCompatActivity {
         }
     }
 
+    // Method to update the total price
+    public void updateTotalPrice() {
+        double totalPrice = 0.0;
+        for (CartItem cartItem : cartItemList) {
+            totalPrice += cartItem.getTotalPrice();  // Add each item's total price
+        }
+
+        totalPriceTextView.setText("Total: $" + totalPrice);  // Display the total price
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // When the user clicks the up (back) button, return to the previous screen
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    // Method to clear cart data when user signs in
+    public static void clearCartData(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Cart", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Clear the cart items
+        editor.clear();
+        editor.apply();
+
+        Log.d("Cart", "Cart has been cleared for the new user.");
+    }
 }
-
-

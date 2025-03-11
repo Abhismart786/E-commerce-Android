@@ -163,6 +163,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.BreakIterator;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
@@ -184,14 +185,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = productList.get(position);
+
+        // Set the product name and image
         holder.productName.setText(product.getPname());
         Picasso.get().load(product.getImage()).into(holder.productImage);
+
+        // Parse the price as a double (assuming the price is stored as a String in Firebase)
+        double price = 0.0;
+        try {
+            price = Double.parseDouble(product.getPrice());  // Convert String to double
+        } catch (NumberFormatException e) {
+            // Handle error if price is not a valid number
+            Log.e("ProductAdapter", "Invalid price format", e);
+        }
+
+        // Format the price as currency and set it to the price TextView
+        holder.productPrice.setText(String.format("$%.2f", price));
 
         // Handle click on product image to add to cart
         holder.productImage.setOnClickListener(v -> {
             addToCart(product);
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -200,13 +216,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
 
+
         TextView productName;
         ImageView productImage;
+        TextView productPrice;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
             productName = itemView.findViewById(R.id.product_name);
             productImage = itemView.findViewById(R.id.product_image);
+            productPrice = itemView.findViewById(R.id.product_price);
         }
     }
 
@@ -240,6 +259,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productObject.put("productId", product.getPid());
             productObject.put("productName", product.getPname());
             productObject.put("productImageUrl", product.getImage());
+            // Ensure product price is passed correctly when adding to cart
+            productObject.put("productPrice", product.getPrice()); // Assuming the product has a method getPrice()
 
             // Add the product to the cart array
             cartItemsArray.put(productObject);

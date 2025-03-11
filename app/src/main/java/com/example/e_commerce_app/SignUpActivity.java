@@ -73,6 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                                                     // Save user data to Realtime Database
                                                     saveUserData(user, name, email);
 
+                                                    // Clear cart data for the new user
+                                                    Cart.clearCartData(SignUpActivity.this);
+
                                                     // Profile update successful, proceed to login page
                                                     Toast.makeText(SignUpActivity.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));

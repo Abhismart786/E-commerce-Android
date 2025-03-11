@@ -31,14 +31,21 @@ public class AdminUserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user);
 
+        // Set up Action Bar (back navigation)
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("User List");  // Set a title for the activity
+        }
+
+        // Initialize Firebase components
+        mAuth = FirebaseAuth.getInstance();
+        usersRef = FirebaseDatabase.getInstance().getReference("users");
+
+        // Set up RecyclerView
         usersRecyclerView = findViewById(R.id.usersRecyclerView);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         userList = new ArrayList<>();
-        mAuth = FirebaseAuth.getInstance();
-        usersRef = FirebaseDatabase.getInstance().getReference("users");
-
-        // Set up the adapter with the delete listener
         userAdapter = new UserAdapter(userList, new UserAdapter.OnDeleteClickListener() {
             @Override
             public void onDeleteClick(AdminView.User user) {
@@ -47,6 +54,8 @@ public class AdminUserListActivity extends AppCompatActivity {
         });
 
         usersRecyclerView.setAdapter(userAdapter);
+
+        // Fetch users from the Firebase Realtime Database
         fetchUsers();
     }
 
@@ -58,7 +67,7 @@ public class AdminUserListActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     AdminView.User user = snapshot.getValue(AdminView.User.class);
                     if (user != null) {
-                        user.id = snapshot.getKey(); // Set the user ID
+                        user.id = snapshot.getKey();  // Set the user ID from Firebase
                         userList.add(user);
                     }
                 }
@@ -73,17 +82,23 @@ public class AdminUserListActivity extends AppCompatActivity {
     }
 
     private void deleteUser(AdminView.User user) {
-        // First, delete the user from the Firebase Realtime Database
+        // Show a progress indicator
+        Toast.makeText(this, "Deleting user...", Toast.LENGTH_SHORT).show();
+
+        // Delete the user from Firebase Realtime Database
         usersRef.child(user.id).removeValue()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // After deleting from Realtime Database, also delete the user from Firebase Authentication
+                        // If the deletion from Realtime Database is successful, proceed with Firebase Authentication deletion if needed
                         if (user.email != null) {
                             deleteFirebaseAuthUser(user);
                         } else {
+                            // User was deleted only from the Realtime Database
                             Toast.makeText(AdminUserListActivity.this, "User deleted successfully", Toast.LENGTH_SHORT).show();
+                            refreshUserList();
                         }
                     } else {
+                        // Handle failure in deleting from Realtime Database
                         Toast.makeText(AdminUserListActivity.this, "Failed to delete user from database", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -97,12 +112,25 @@ public class AdminUserListActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(AdminUserListActivity.this, "Authenticated user deleted", Toast.LENGTH_SHORT).show();
+                            refreshUserList();  // Refresh user list after successful deletion
                         } else {
                             Toast.makeText(AdminUserListActivity.this, "Failed to delete authenticated user", Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
+            // The user was deleted from the Realtime Database but not Firebase Authentication
             Toast.makeText(AdminUserListActivity.this, "User deleted successfully", Toast.LENGTH_SHORT).show();
+            refreshUserList();
         }
     }
+
+    // Method to refresh the user list after deletion
+    private void refreshUserList() {
+        // Fetch the users again to reflect the updated list
+        fetchUsers();
+    }
+
+    // Handle back navigation in action bar
+
+
 }
