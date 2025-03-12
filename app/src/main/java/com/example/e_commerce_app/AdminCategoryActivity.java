@@ -2,10 +2,12 @@ package com.example.e_commerce_app;
 
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +17,9 @@ public class AdminCategoryActivity extends AppCompatActivity
     private ImageView tShirts, sportsTShirts, femaleDresses, sweathers;
     private ImageView glasses, hatsCaps, walletsBagsPurses, shoes;
     private ImageView headPhonesHandFree, Laptops, watches, mobilePhones;
+    private Button bb;
 
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,6 +43,16 @@ public class AdminCategoryActivity extends AppCompatActivity
         mobilePhones = (ImageView) findViewById(R.id.smartphone_image);
 
 // Categories
+        bb = findViewById(R.id.bb);
+        // Initialize the manual back button and set its click listener
+        bb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the UserViewActivity
+                Intent intent = new Intent(AdminCategoryActivity.this, Activity.class);
+                startActivity(intent);
+            }
+        });
         tShirts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

@@ -1,6 +1,9 @@
 package com.example.e_commerce_app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +28,7 @@ public class AdminUserListActivity extends AppCompatActivity {
     private List<AdminView.User> userList;
     private DatabaseReference usersRef;
     private FirebaseAuth mAuth;
+    private Button backButton;  // Declare the back button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +36,7 @@ public class AdminUserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_user);
 
         // Set up Action Bar (back navigation)
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("User List");  // Set a title for the activity
-        }
+
 
         // Initialize Firebase components
         mAuth = FirebaseAuth.getInstance();
@@ -57,6 +58,16 @@ public class AdminUserListActivity extends AppCompatActivity {
 
         // Fetch users from the Firebase Realtime Database
         fetchUsers();
+        backButton = findViewById(R.id.backButton);
+        // Initialize the manual back button and set its click listener
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the UserViewActivity
+                Intent intent = new Intent(AdminUserListActivity.this, Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchUsers() {
@@ -131,6 +142,13 @@ public class AdminUserListActivity extends AppCompatActivity {
     }
 
     // Handle back navigation in action bar
-
-
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        // Handle the back button press
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();  // This will navigate back to the previous screen
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
