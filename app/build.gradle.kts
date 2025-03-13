@@ -42,11 +42,17 @@ android {
         viewBinding = true
     }
 }
+dependencies {
+    implementation ("com.stripe:stripe-android:20.3.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+}
 
 dependencies {
     implementation(libs.firebase.auth)  // Firebase Authentication SDK
       // Firebase Core SDK
-
+    implementation(libs.volley)
+    implementation(libs.stripe)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

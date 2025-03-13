@@ -40,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         loginRedirect = findViewById(R.id.loginRedirect);
 
+
         // Sign-up logic
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

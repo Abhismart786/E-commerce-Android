@@ -4,20 +4,48 @@
     android:layout_height="match_parent">
 
     <!-- RecyclerView for Cart Items -->
+
+    <!-- Total Price TextView -->
+
+    <!-- Payment Button -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_above="@id/totalPriceTextView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1" />
 
-    <!-- Total Price TextView -->
     <TextView
         android:id="@+id/totalPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: $0.00"
-        android:textSize="18sp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp" />
+        android:layout_marginEnd="271dp"
+        android:layout_marginBottom="55dp"
+        android:padding="16dp"
+        android:text="Total: $0.00"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/paymentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-125dp"
+        android:layout_marginBottom="50dp"
+        android:layout_toEndOf="@+id/totalPriceTextView"
+        android:padding="16dp"
+        android:text="Payment"
+        android:textSize="16sp" />
+    <WebView
+        android:id="@+id/paymentWebView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 </RelativeLayout>
